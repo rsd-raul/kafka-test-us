@@ -1,9 +1,10 @@
-package com.mapr.examples;
+package com.rsd.raul.examples;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.io.Resources;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +24,7 @@ public class Consumer {
 
     public static void main(String[] args) throws IOException{
 
-        String uniqueSourceID = args[0].equals("all") ? null : args[0];
+        String uniqueSourceID = args[0].equals("todos") ? null : args[0];
 
         // Create Jackson mapper and Kafka customer
         ObjectMapper mapper = new ObjectMapper();
@@ -45,10 +46,12 @@ public class Consumer {
         // Keep listening while we still need data
         while (!extractionCompleted) {
 
-            // Read records with a 2s timeout and if anything new is found, process it.
-            for (ConsumerRecord<String, String> record : consumer.poll(2000)) {
+            ConsumerRecords<String, String> records = consumer.poll(2000);
 
-                if(record.topic().equals("DataSection"))
+            // Read records with a 2s timeout and if anything new is found, process it.
+            for (ConsumerRecord<String, String> record : records) {
+
+                if (record.topic().equals("DataSection"))
                     dataCounter++;
                 else {
                     JsonNode source = mapper.readTree(record.value());
@@ -120,13 +123,13 @@ public class Consumer {
             }
             // If not, discard the "duplicate".
 
-        // If current location is near the first location we have an edge
+            // If current location is near the first location we have an edge
         } else if(currentLocation.isNearby(vehicleLocations.getFirstLocation())) {
             System.out.println("Close to first");
             // Save previous location as a result, and if both solutions are set, get the full route from A to B
             vehicleLocations.saveResult(currentLocation);
 
-        // If the current location is not a solution nor is close to the previous location
+            // If the current location is not a solution nor is close to the previous location
         } else {
             System.out.println("Close to none");
             // Rotate the values
@@ -135,10 +138,10 @@ public class Consumer {
     }
 
     private static void printCSVFormattedRoute(String sourceId, List<Location> locationList){
-        System.out.println("Printing formatted route for vehicle: " + sourceId);
+        System.out.println("Mostrando ruta formateada para el vehiculo: " + sourceId);
         System.out.println("lat,lon,tim");
         for (Location aux : locationList)
-            System.out.print(aux.getLatitude() + "," + aux.getLongitude() + "," + aux.getTimestamp());
+            System.out.println(aux.getLatitude() + "," + aux.getLongitude() + "," + aux.getTimestamp());
 
         shownCounter++;
         if(shownCounter == 5)

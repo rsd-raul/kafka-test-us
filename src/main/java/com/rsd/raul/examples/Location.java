@@ -1,4 +1,4 @@
-package com.mapr.examples;
+package com.rsd.raul.examples;
 
 import java.math.BigDecimal;
 
@@ -12,12 +12,7 @@ public class Location {
 
     // ------------------------- CONSTRUCTOR -------------------------
 
-    public Location(BigDecimal longitude, BigDecimal latitude) {
-        this.longitude = longitude;
-        this.latitude = latitude;
-    }
-
-    public Location(BigDecimal longitude, BigDecimal latitude, String timestamp) {
+    Location(BigDecimal longitude, BigDecimal latitude, String timestamp) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.timestamp = timestamp;
@@ -52,10 +47,6 @@ public class Location {
         double distance = Math.sqrt(latDifEle.add(lonDifEle).doubleValue()) * 1E5;
         System.out.println("Distance: " + distance);
         return distance;
-//        BigDecimal distance = Utils.sqrt(latDifEle.add(lonDifEle));
-//
-//        // Return a fairly precise value
-//        return distance.doubleValue();
     }
 
     @Override

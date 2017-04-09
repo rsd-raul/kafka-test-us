@@ -1,4 +1,4 @@
-package com.mapr.examples;
+package com.rsd.raul.examples;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ public class Run {
             throw new IllegalArgumentException("Must have either 'all' or a particular ID as argument");
         }
         switch (args[0]) {
-            case "all":
+            case "todos":
                 Consumer.main(args);
                 break;
             default:

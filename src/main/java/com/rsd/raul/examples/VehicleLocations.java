@@ -1,8 +1,7 @@
-package com.mapr.examples;
+package com.rsd.raul.examples;
 
 import java.util.ArrayList;
 import java.util.List;
-
 class VehicleLocations {
 
     // ------------------------- ATTRIBUTES --------------------------
@@ -137,26 +136,20 @@ class VehicleLocations {
 
         // Save in the first solution spot if empty
         if (firstSolution == null) {
-            System.out.println("Saving F:");
-            System.out.println("A: " + firstLocation);
-            System.out.println("B: " + middleLocation);
-            System.out.println("C: " + currentLocation);
+            System.out.println("Guardando F:");
+            System.out.println(middleLocation);
             firstSolution = middleLocation;
 
-        // Save in the second solution spot if empty
+            // Save in the second solution spot if empty
         } else if (secondSolution == null) {
-            System.out.println("Saving S:");
-            System.out.println("A: " + firstLocation);
-            System.out.println("B: " + middleLocation);
-            System.out.println("C: " + currentLocation);
+            System.out.println("Guardando S:");
+            System.out.println(middleLocation);
             secondSolution = middleLocation;
 
-        // In case duplicates are found, print them, this will help to correct the nearby radius
+            // In case duplicates are found, print them, this will help to correct the nearby radius
         } else if(!firstSolution.isNearby(middleLocation) && !secondSolution.isNearby(middleLocation)) {
-            System.out.println("Save D:");
-            System.out.println("A: " + firstLocation);
-            System.out.println("B: " + middleLocation);
-            System.out.println("C: " + currentLocation);
+            System.out.println("Mostrando D:");
+            System.out.println(middleLocation);
         }
 
         // Rotate firstLocation and middleLocation
