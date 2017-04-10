@@ -43,10 +43,15 @@ Como extra no solo se han obtenido los puntos pertenecientes a las ruta sino que
 
 #### Uso:
 Entrar en una ruta, nombre basado en los primeros 5 digitos de las sourceId
+
 (Consultar coordenadas extraidas)
+
 Seleccionar en el menu VIEWS
+
 Hacer click en la vista "Recorrido idCoche - Mapa"
+
 (Consultar puntos que trazan la ruta en el mapa)
+
 
 Se agarece a Viavansi, la empresa Sevillana que creo dicho portal, el permitirnos subir los datos a ahí. 
 
